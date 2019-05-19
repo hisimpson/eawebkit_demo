@@ -62,6 +62,7 @@ public:
 	virtual EA::WebKit::ThreadId Begin(EA::WebKit::ThreadFunc,void* pThreadContext, void* pUserData);
 	virtual void WaitForEnd(intptr_t* result);
 	virtual void SetName(const char* pName);
+    virtual void ChangePriority(int delta);
 protected:
     std::thread m_thread;
 };

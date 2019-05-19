@@ -93,6 +93,11 @@ void BeamNG::Threading::Win64Thread::SetName(const char* pName)
     // TODO
 }
 
+void BeamNG::Threading::Win64Thread::ChangePriority(int delta)
+{
+    // TODO
+}
+
 BeamNG::Threading::Win64ThreadLocalStorage::Win64ThreadLocalStorage() : m_value(0)
 {
 
