@@ -4,7 +4,7 @@
 
 # Requirements
 
-* Precompiled WebKit 15.4.2.0.0 ([download sources here](https://gpl.ea.com/eawebkit.html)) (Compile and put the .dll into the Bin64 folder)
+* Precompiled WebKit 16.3.1.1.0 ([download sources here](https://github.com/ychin/EAWebKit)) (Compile and put the .dll into the Bin64 folder)
 
 # Quickstart
 
