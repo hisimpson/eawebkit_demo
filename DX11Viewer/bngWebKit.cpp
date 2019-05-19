@@ -103,7 +103,8 @@ void BeamNG::WebKit::init(DXContexts& dxc) {
     PF_CreateEAWebkitInstance create_Webkit_instance = nullptr;
 
 #ifdef _DEBUG
-    HMODULE wdll = LoadLibraryA("EAWebkitd.dll");
+    //HMODULE wdll = LoadLibraryA("EAWebkitd.dll");
+    HMODULE wdll = LoadLibraryA("EAWebkit.dll");
 #else
     HMODULE wdll = LoadLibraryA("EAWebkit.dll");
 #endif // _DEBUG
@@ -132,14 +133,15 @@ void BeamNG::WebKit::init(DXContexts& dxc) {
 
 
     EA::WebKit::Parameters& params = wk->GetParameters();
-    params.mEAWebkitLogLevel = 1337;
-    params.mHttpManagerLogLevel = 1337;
-    params.mRemoteWebInspectorPort = 0; // 8282;
+    params.mEAWebkitLogLevel = 4;
+    params.mHttpManagerLogLevel = 4;
+    params.mRemoteWebInspectorPort = 1234; // 8282;
     params.mReportJSExceptionCallstacks = true;
-    //params.mJavaScriptStackSize = 1233337;
-    params.mVerifySSLCert = false;
+    params.mJavaScriptStackSize = 1024 * 1024;;
+    params.mVerifySSLCert = true;
 
     // attention: you need to load all the fonts that are set, otherwise the renderer will crash
+    /*
     wcscpy((wchar_t*)params.mFontFamilyStandard, L"Roboto");
     wcscpy((wchar_t*)params.mFontFamilySerif, L"Roboto");
     wcscpy((wchar_t*)params.mFontFamilySansSerif, L"Roboto");
@@ -147,6 +149,7 @@ void BeamNG::WebKit::init(DXContexts& dxc) {
     wcscpy((wchar_t*)params.mFontFamilyCursive, L"Roboto");
     wcscpy((wchar_t*)params.mFontFamilyFantasy, L"Roboto");
     wcscpy((wchar_t*)params.mSystemFont, L"Roboto");
+    */
     params.mSystemFontBold = true;
 
     wk->SetParameters(params);
@@ -155,9 +158,9 @@ void BeamNG::WebKit::init(DXContexts& dxc) {
     EA::WebKit::SocketTransportHandler* sth = wk->GetSocketTransportHandler();
 
     //BeamNG::Utils::init_system_fonts(wk);
-    //BeamNG::Utils::add_ttf_font(wk, "Roboto-Regular.ttf");
-
-
+    //BeamNG::Utils::add_ttf_font(wk, "times.ttf");
+    BeamNG::Utils::add_ttf_font(wk, "Roboto-Regular.ttf");
+    
     v = wk->CreateView();
 
     EA::WebKit::ViewParameters vp;
@@ -167,7 +170,8 @@ void BeamNG::WebKit::init(DXContexts& dxc) {
     vp.mHeight = 768;
     vp.mBackgroundColor = 0xffffffff;
     vp.mTileSize = 256; // 512;
-    vp.mUseTiledBackingStore = true;
+    vp.mUseTiledBackingStore = false;
+    vp.mpUserData = v;
     v->InitView(vp);
 
     //v->SetDrawDebugVisuals(true);
