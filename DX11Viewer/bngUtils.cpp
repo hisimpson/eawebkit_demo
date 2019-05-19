@@ -132,7 +132,8 @@ int BeamNG::Utils::add_ttf_font(EA::WebKit::EAWebKitLib* wk, const char* ttfFile
         return 0;
     }
     int res = ts->AddFace(buffer, fileSize);
-    free(buffer);
+    //Text system will take ownership of this memory
+    //free(buffer);
     return res;
 }
 
